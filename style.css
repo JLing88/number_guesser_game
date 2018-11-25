@@ -12,6 +12,9 @@ html {
   color: white;
   padding: 3px;
 }
+.minMax {
+  text-align: center;
+}
 #header {
   text-align: center;
   font-size: 65px;

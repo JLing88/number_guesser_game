@@ -24,8 +24,15 @@
         <p id="guesses"></p>
         <p id="lastGuess"></p>
         <p id="highOrLow"></p>
-        <p id="error"></p>
       </div>
+    </div>
+    <div class="minMax">
+      <h5>Generate a custom range by setting minumum and maximum value</h5>
+      <form class="customRange">
+        <input type="number" id="minField" class="minField" placeholder="Set Minimum Value">
+        <input type="number" id="maxField" class="maxField" placeholder="Set Maximum Value">
+        <input type="submit" id="setRange" value="Set Range" onclick="setMinMax()">
+      </form>
     </div>
     <script src="script.js"></script>
   </body>

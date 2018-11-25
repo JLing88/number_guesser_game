@@ -8,6 +8,8 @@ const highOrLow = document.getElementById('highOrLow');
 const error = document.getElementById('error');
 const guessSubmit = document.getElementById('guessSubmit');
 const guessField = document.getElementById('guessField');
+const userMin = document.getElementById('minField');
+const userMax = document.getElementById('maxField');
 let resetButton = document.getElementById('resetButton');
 
 let guessCount = 0;
@@ -96,6 +98,12 @@ function withinRange(guess) {
   } else {
     return true;
   }
+}
+
+function setMinMax() {
+  min = userMin.value;
+  max = userMax.value;
+  resetGame();
 }
 
 guessSubmit.addEventListener('click', checkGuess);
