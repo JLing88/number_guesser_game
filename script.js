@@ -126,6 +126,7 @@ function withinRange(guess) {
 }
 
 function setMinMax() {
+  min = 
   resetGame();
 }
 
