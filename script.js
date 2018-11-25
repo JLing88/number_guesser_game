@@ -72,15 +72,9 @@ function gameOver() {
 
 //resets game
 function resetGame(min, max) {
-  //if user has input values for min/max, use them to generate number
-  if (userMin.value && userMax.value) {
-    min = parseInt(userMin.value);
-    max = parseInt(userMax.value);
-    randomNumber = generateRandomNumber(min, max);
-  //if not, use the defaults
-  } else {
-    generateRandomNumber(1, 100);
-  }
+  //generatesRandomNumber
+  debugger;
+  randomNumber = generateRandomNumber(min, max);
   //set guessCount to 0
   guessCount = 0;
 
@@ -96,6 +90,8 @@ function resetGame(min, max) {
   guessField.focus();
 
   lastGuess.style.color = 'white';
+  min = 1;
+  max = 100;
 }
 
 //generates random number
@@ -126,8 +122,9 @@ function withinRange(guess) {
 }
 
 function setMinMax() {
-  min = 
-  resetGame();
+  min = parseInt(userMin.value);
+  max = parseInt(userMax.value);
+  resetGame(min, max);
 }
 
 //adds event listeners to submit and reset buttons
