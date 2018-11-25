@@ -1,7 +1,6 @@
-let randomNumber = Math.floor(Math.random() * 100) + 1;
-let min = 1
-let max = 100
-
+var randomNumber = generateRandomNumber(1, 100);
+var min;
+var max;
 const guesses = document.getElementById('guesses');
 const lastGuess = document.getElementById('lastGuess');
 const highOrLow = document.getElementById('highOrLow');
@@ -10,9 +9,9 @@ const guessSubmit = document.getElementById('guessSubmit');
 const guessField = document.getElementById('guessField');
 const userMin = document.getElementById('minField');
 const userMax = document.getElementById('maxField');
-let resetButton = document.getElementById('resetButton');
+var resetButton = document.getElementById('resetButton');
 
-let guessCount = 0;
+var guessCount = 0;
 
 function checkGuess() {
   let userGuess = Number(guessField.value);
@@ -58,8 +57,16 @@ function gameOver() {
   guessSubmit.disabled = true;
 }
 
-function resetGame() {
-  guessCount = 1;
+function resetGame(min, max) {
+  debugger
+  if (userMin.value && userMax.value) {
+    min = parseInt(userMin.value);
+    max = parseInt(userMax.value);
+    randomNumber = generateRandomNumber(min, max);
+  } else {
+    generateRandomNumber(min, max);
+  }
+  guessCount = 0;
 
   const resetParas = document.querySelectorAll('.resultParas p');
   for (let i = 0 ; i < resetParas.length ; i++) {
@@ -72,12 +79,10 @@ function resetGame() {
   guessField.focus();
 
   lastGuess.style.color = 'white';
-
-  generateRandomNumber(min, max);
 }
 
 function generateRandomNumber(min, max) {
-  return Math.random() * (max - min) + min;
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 function validate() {
@@ -101,8 +106,6 @@ function withinRange(guess) {
 }
 
 function setMinMax() {
-  min = userMin.value;
-  max = userMax.value;
   resetGame();
 }
 
