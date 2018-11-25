@@ -1,6 +1,7 @@
-var randomNumber = generateRandomNumber(1, 100);
 var min = 1;
 var max = 100;
+var randomNumber = generateRandomNumber(min, max);
+
 const guesses = document.getElementById('guesses');
 const lastGuess = document.getElementById('lastGuess');
 const highOrLow = document.getElementById('highOrLow');
