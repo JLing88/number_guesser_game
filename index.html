@@ -5,36 +5,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Number guessing game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <style>
-      html {
-        font-family: sans-serif;
-      }
-      .gamebody {
-        width: 50%;
-        max-width: 800px;
-        min-width: 480px;
-        margin: 0 auto;
-        text-align: center;
-      }
-      .lastResult {
-        color: white;
-        padding: 3px;
-      }
-      #header {
-        text-align: center;
-        font-size: 65px;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
-
   <body>
     <h1 class='jumbotron' id='header'>Number Guesser</h1>
     <div class='gamebody'>
-      <p>We have selected a random number between 1 and 100. Try to guess it!.</p>
+      <p>We have selected a random number between 1 and 100. Try to guess it!</p>
 
       <div class="form">
         <label for="guessField">Enter a guess: </label>
-        <input type="number" onkeyup="success()" id="guessField" class="guessField">
+        <input type="number" onkeyup="validate()" id="guessField" class="guessField">
         <input type="submit" value="Submit guess" id="guessSubmit" class="guessSubmit">
         <button id='clearGuess' disabled onclick="document.getElementById('guessField').value = ''">Clear Guess</button>
         <button id='resetButton' disabled onclick="resetGame()">Reset Game</button>
@@ -44,6 +24,7 @@
         <p id="guesses"></p>
         <p id="lastGuess"></p>
         <p id="highOrLow"></p>
+        <p id="error"></p>
       </div>
     </div>
     <script src="script.js"></script>

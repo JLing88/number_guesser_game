@@ -5,53 +5,55 @@ let max = 100
 const guesses = document.getElementById('guesses');
 const lastGuess = document.getElementById('lastGuess');
 const highOrLow = document.getElementById('highOrLow');
-
+const error = document.getElementById('error');
 const guessSubmit = document.getElementById('guessSubmit');
 const guessField = document.getElementById('guessField');
 let resetButton = document.getElementById('resetButton');
 
-let guessCount = 1;
+let guessCount = 0;
 
 function checkGuess() {
   let userGuess = Number(guessField.value);
-
-  if (guessCount > 1) {
-    resetButton.removeAttribute("disabled");
-  }
-  if (guessCount === 1) {
-    guesses.textContent = 'Previous guesses: ';
-  }
-  guesses.textContent += userGuess + ' ';
-
-  if (userGuess === randomNumber) {
-    lastGuess.textContent = 'Boom!';
-    lastGuess.style.color = 'green';
-    highOrLow.textContent = '';
-    gameOver();
-  } else if (guessCount === 10) {
-    lastGuess.textContent = 'Game Over!';
-    gameOver();
-  } else {
-    lastGuess.textContent = "Incorrect!";
-    lastGuess.style.color = 'red';
-    if (userGuess < randomNumber) {
-      highOrLow.textContent = 'Too low!';
-    } else {
-      highOrLow.textContent = 'Too high!';
+  if (withinRange(userGuess)) {
+    if (guessCount === 0) {
+      guesses.textContent = 'Previous guesses: ';
     }
+    guesses.textContent += userGuess + ' ';
+
+    if (userGuess === randomNumber) {
+      lastGuess.textContent = 'Boom!';
+      lastGuess.style.color = 'green';
+      highOrLow.textContent = '';
+      gameOver();
+    } else if (guessCount === 10) {
+      lastGuess.textContent = 'Game Over!';
+      gameOver();
+    } else {
+      lastGuess.textContent = "Incorrect!";
+      lastGuess.style.color = 'red';
+      if (userGuess < randomNumber) {
+        highOrLow.textContent = 'Too low!';
+      } else {
+        highOrLow.textContent = 'Too high!';
+      }
+    }
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
+
+    if (guessCount > 0) {
+      resetButton.removeAttribute("disabled");
+    }
+  } else {
+    return false;
   }
-  guessCount++;
-  guessField.value = '';
-  guessField.focus();
 }
+
+
 
 function gameOver() {
   guessField.disabled = true;
   guessSubmit.disabled = true;
-  // resetButton = document.createElement('button');
-  // resetButton.textContent = 'New Game';
-  // document.body.appendChild(resetButton);
-  // resetButton.addEventListener('click', resetGame)
 }
 
 function resetGame() {
@@ -62,23 +64,37 @@ function resetGame() {
     resetParas[i].textContent = '';
   }
 
-  resetButton.parentNode.removeChild(resetButton);
-
   guessField.disabled = false;
   guessSubmit.disabled = false;
   guessField.value = '';
   guessField.focus();
 
-  lastResult.style.backgroundColor = 'white';
+  lastGuess.style.color = 'white';
 
-  randomNumber = Math.floor(Math.random() * 100) + 1;
+  generateRandomNumber(min, max);
 }
 
-function success() {
-  if(document.getElementById("guessField").value==="") {
-    document.getElementById('clearGuess').disabled = true;
+function generateRandomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function validate() {
+  var guess = document.getElementById("guessField");
+  var clear = document.getElementById('clearGuess');
+  if(guess.value==="") {
+    clear.disabled = true;
   } else {
-    document.getElementById('clearGuess').disabled = false;
+    clear.disabled = false;
+  }
+}
+
+function withinRange(guess) {
+  if (guess < min || guess > max) {
+    guessField.value = '';
+    alert("Number outside of range!");
+    return false;
+  } else {
+    return true;
   }
 }
 

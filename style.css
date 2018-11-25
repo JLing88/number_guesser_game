@@ -1,0 +1,18 @@
+html {
+  font-family: sans-serif;
+}
+.gamebody {
+  width: 50%;
+  max-width: 800px;
+  min-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+.lastResult {
+  color: white;
+  padding: 3px;
+}
+#header {
+  text-align: center;
+  font-size: 65px;
+}
