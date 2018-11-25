@@ -1,6 +1,6 @@
 var randomNumber = generateRandomNumber(1, 100);
-var min;
-var max;
+var min = 1;
+var max = 100;
 const guesses = document.getElementById('guesses');
 const lastGuess = document.getElementById('lastGuess');
 const highOrLow = document.getElementById('highOrLow');
@@ -58,7 +58,6 @@ function gameOver() {
 }
 
 function resetGame(min, max) {
-  debugger
   if (userMin.value && userMax.value) {
     min = parseInt(userMin.value);
     max = parseInt(userMax.value);
